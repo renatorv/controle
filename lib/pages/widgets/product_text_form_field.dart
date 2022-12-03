@@ -21,6 +21,7 @@ class ProductTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textCapitalization: TextCapitalization.sentences ,
       validator: Validatorless.required(msgErro),
       maxLength: qtdPalavras,
       maxLines: qtdLinhas != 0 ? qtdLinhas : null,
