@@ -1,3 +1,4 @@
+import 'package:controle_estoque/database/app_database.dart';
 import 'package:controle_estoque/models/product.dart';
 import 'package:controle_estoque/pages/widgets/product_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -69,8 +70,7 @@ class _ProductFormState extends State<ProductForm> {
                         final int? quantity = int.tryParse(_quantidadeController.text);
 
                         final Product newProduct = Product(0, name, description, quantity!);
-
-                        Navigator.pop(context, newProduct);
+                        save(newProduct).then((id) => Navigator.pop(context));
                       }
                     },
                     child: const Text(

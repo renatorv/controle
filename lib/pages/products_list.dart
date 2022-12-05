@@ -65,15 +65,11 @@ class ProductsList extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
         onPressed: () {
-          Navigator.of(context)
-              .push(
-                MaterialPageRoute(
-                  builder: (context) => const ProductForm(),
-                ),
-              )
-              .then(
-                (newProduct) => debugPrint(newProduct.toString()),
-              );
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const ProductForm(),
+            ),
+          );
         },
         child: const Icon(Icons.add),
       ),
