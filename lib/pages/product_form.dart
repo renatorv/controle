@@ -1,7 +1,9 @@
-import 'package:controle_estoque/database/app_database.dart';
-import 'package:controle_estoque/models/product.dart';
-import 'package:controle_estoque/pages/widgets/product_text_form_field.dart';
+import 'package:controle_estoque/database/dao/product_dao.dart';
 import 'package:flutter/material.dart';
+
+// import '../database/app_database.dart';
+import '../models/product.dart';
+import 'widgets/product_text_form_field.dart';
 
 class ProductForm extends StatefulWidget {
   const ProductForm({Key? key}) : super(key: key);
@@ -16,6 +18,8 @@ class _ProductFormState extends State<ProductForm> {
   final TextEditingController _quantidadeController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
+
+  final ProductDao _productDao = ProductDao();
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +74,7 @@ class _ProductFormState extends State<ProductForm> {
                         final int? quantity = int.tryParse(_quantidadeController.text);
 
                         final Product newProduct = Product(0, name, description, quantity!);
-                        save(newProduct).then((id) => Navigator.pop(context));
+                        _productDao.save(newProduct).then((id) => Navigator.pop(context));
                       }
                     },
                     child: const Text(

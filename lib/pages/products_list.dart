@@ -1,11 +1,14 @@
-import 'package:controle_estoque/database/app_database.dart';
 import 'package:controle_estoque/models/product.dart';
 import 'package:controle_estoque/pages/product_form.dart';
 import 'package:controle_estoque/pages/widgets/product_item.dart';
 import 'package:flutter/material.dart';
 
+
+import '../database/dao/product_dao.dart';
+
 class ProductsList extends StatelessWidget {
-  const ProductsList({Key? key}) : super(key: key);
+   ProductsList({Key? key}) : super(key: key);
+    final ProductDao _productDao = ProductDao();
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +20,7 @@ class ProductsList extends StatelessWidget {
       ),
       body: FutureBuilder<List<Product>>(
         initialData: const [],
-        future: findAll(),
+        future: _productDao.findAll(),
         builder: ((context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
